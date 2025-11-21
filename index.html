@@ -3,149 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flames.Blue Links</title>
+    <title>Flames.Blue</title>
     
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            /* Dark "Abyss" Background */
-            background-color: #050510; 
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #050510;
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
             min-height: 100vh;
         }
 
+        /* Animated Background Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Animated Gradient Overlay */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(0, 114, 255, 0.1), 
+                rgba(0, 198, 255, 0.05),
+                rgba(0, 114, 255, 0.1));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Content Container */
         .container {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            max-width: 900px;
-            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
         }
 
         /* Glowing Title */
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            /* Gradient Text */
-            background: linear-gradient(to right, #00c6ff, #0072ff);
+            font-size: 4rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #00c6ff, #0072ff, #00c6ff);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* Subtle text glow */
-            text-shadow: 0px 0px 20px rgba(0, 114, 255, 0.3);
+            background-clip: text;
+            animation: shine 3s linear infinite;
+            filter: drop-shadow(0 0 30px rgba(0, 114, 255, 0.5));
         }
 
-        p {
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .subtitle {
             color: #a0a0a0;
-            font-size: 1.2rem;
-            margin-bottom: 50px;
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
         }
 
         /* Grid Layout */
-        .icon-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        /* The Icon Cards */
-        .icon-card {
-            width: 150px;
-            height: 150px;
-            background: #10101a; /* Slightly lighter than body */
-            border: 1px solid #1f1f3d;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        /* Link Cards */
+        .link-card {
+            background: rgba(16, 16, 26, 0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid #1f1f3d;
+            border-radius: 15px;
+            padding: 40px 20px;
             text-decoration: none;
-            color: #00c6ff; /* Default Icon Color */
-            transition: all 0.3s ease-in-out;
-            position: relative;
-        }
-
-        .icon-card i {
-            font-size: 3.5rem; /* Mid-Size Icons */
-            margin-bottom: 15px;
-        }
-
-        .icon-card span {
-            font-size: 1rem;
             color: #ffffff;
-            font-weight: 500;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* The "Blue Flame" Hover Effect */
-        .icon-card:hover {
-            transform: translateY(-8px);
-            background: #000000;
+        /* Glowing border animation on hover */
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #0072ff, #00c6ff, #0072ff);
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s;
+            background-size: 400%;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 
+                0 0 40px rgba(0, 114, 255, 0.6),
+                0 0 80px rgba(0, 198, 255, 0.3);
+        }
+
+        /* Pulse effect */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .link-card.highlight {
             border-color: #0072ff;
-            /* This creates the glowing blue effect */
-            box-shadow: 0 0 25px rgba(0, 114, 255, 0.6), 
-                        0 0 50px rgba(0, 114, 255, 0.2); 
+            animation: pulse 2s infinite;
         }
 
-        .icon-card:hover i {
-            color: #ffffff; /* Icon turns white on hover */
-            text-shadow: 0 0 10px #00c6ff;
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1rem; }
+            .link-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
         }
-
     </style>
 </head>
 <body>
 
+    <!-- Animated Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <!-- Gradient Overlay -->
+    <div class="gradient-overlay"></div>
+
+    <!-- Main Content -->
     <div class="container">
-        <h1>Flames.Blue</h1>
-        <p>Welcome to my portal</p>
+        <h1>FLAMES.BLUE</h1>
+        <p class="subtitle">◈ YOUR DIGITAL HUB ◈</p>
 
-        <div class="icon-grid">
+        <div class="link-grid">
             
-            <!-- Link 1 -->
-            <a href="https://discord.com" target="_blank" class="icon-card">
-                <i class="fa-brands fa-discord"></i>
-                <span>Discord</span>
+            <a href="https://discord.gg/yourserver" target="_blank" class="link-card">
+                DISCORD
             </a>
 
-            <!-- Link 2 -->
-            <a href="https://twitter.com" target="_blank" class="icon-card">
-                <i class="fa-brands fa-x-twitter"></i>
-                <span>Twitter</span>
+            <a href="https://twitter.com/yourusername" target="_blank" class="link-card">
+                TWITTER
             </a>
 
-            <!-- Link 3 -->
-            <a href="https://github.com" target="_blank" class="icon-card">
-                <i class="fa-brands fa-github"></i>
-                <span>GitHub</span>
+            <a href="https://github.com/yourusername" target="_blank" class="link-card">
+                GITHUB
             </a>
 
-            <!-- Link 4 -->
-            <a href="https://instagram.com" target="_blank" class="icon-card">
-                <i class="fa-brands fa-instagram"></i>
-                <span>Instagram</span>
+            <a href="https://instagram.com/yourusername" target="_blank" class="link-card">
+                INSTAGRAM
             </a>
 
-            <!-- Link 5 -->
-            <a href="https://steamcommunity.com" target="_blank" class="icon-card">
-                <i class="fa-brands fa-steam"></i>
-                <span>Steam</span>
+            <a href="https://youtube.com/@yourchannel" target="_blank" class="link-card">
+                YOUTUBE
             </a>
 
-            <!-- Link 6 -->
-            <a href="mailto:contact@flames.blue" class="icon-card">
-                <i class="fa-solid fa-envelope"></i>
-                <span>Contact</span>
+            <a href="https://twitch.tv/yourusername" target="_blank" class="link-card">
+                TWITCH
+            </a>
+
+            <a href="https://steamcommunity.com/id/yourprofile" target="_blank" class="link-card">
+                STEAM
+            </a>
+
+            <a href="https://reddit.com/u/yourusername" target="_blank" class="link-card">
+                REDDIT
+            </a>
+
+            <a href="https://tiktok.com/@yourusername" target="_blank" class="link-card">
+                TIKTOK
+            </a>
+
+            <a href="https://spotify.com" target="_blank" class="link-card">
+                SPOTIFY
+            </a>
+
+            <a href="https://yourportfolio.com" target="_blank" class="link-card highlight">
+                PORTFOLIO
+            </a>
+
+            <a href="mailto:contact@flames.blue" class="link-card highlight">
+                CONTACT
             </a>
 
         </div>
     </div>
+
+    <!-- Particle Animation Script -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Particle system
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Wrap around screen
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(0, 114, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw particles
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections between close particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.strokeStyle = `rgba(0, 198, 255, ${0.2 * (1 - distance / 150)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 
 </body>
 </html>
