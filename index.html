@@ -3,19 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Website</title>
+    <title>My Links</title>
+    
+    <!-- This link pulls in the Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         body {
-            font-family: sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-            margin-top: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
         }
-        h1 { color: #0070f3; }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .profile-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Container for the icons */
+        .icon-grid {
+            display: flex;
+            flex-wrap: wrap; /* Allows icons to drop to next line on mobile */
+            gap: 20px;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        /* The individual link card */
+        .icon-card {
+            background: white;
+            width: 140px; /* Mid-size width */
+            height: 140px; /* Mid-size height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; /* Removes underline */
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #333;
+        }
+
+        /* Hover Effect */
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            background-color: #0070f3; /* Vercel Blue on hover */
+            color: white;
+        }
+
+        /* Icon Styling */
+        .icon-card i {
+            font-size: 3rem; /* Size of the icon */
+            margin-bottom: 10px;
+        }
+
+        .icon-card span {
+            font-weight: 600;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>I just deployed this using GitHub and Vercel.</p>
+
+    <div class="profile-header">
+        <h1>Connect With Me</h1>
+        <p>Check out my social media and projects below</p>
+    </div>
+
+    <div class="icon-grid">
+        
+        <!-- Link 1: GitHub -->
+        <a href="https://github.com/yourusername" target="_blank" class="icon-card">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
+        </a>
+
+        <!-- Link 2: LinkedIn -->
+        <a href="https://linkedin.com/in/yourusername" target="_blank" class="icon-card">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
+        </a>
+
+        <!-- Link 3: Twitter / X -->
+        <a href="https://twitter.com/yourusername" target="_blank" class="icon-card">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span>Twitter</span>
+        </a>
+
+        <!-- Link 4: Instagram -->
+        <a href="https://instagram.com/yourusername" target="_blank" class="icon-card">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram</span>
+        </a>
+
+        <!-- Link 5: YouTube -->
+        <a href="https://youtube.com" target="_blank" class="icon-card">
+            <i class="fa-brands fa-youtube"></i>
+            <span>YouTube</span>
+        </a>
+
+        <!-- Link 6: Email -->
+        <a href="mailto:youremail@example.com" class="icon-card">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email Me</span>
+        </a>
+
+    </div>
+
 </body>
 </html>
