@@ -3,128 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Links</title>
+    <title>Flames.Blue Links</title>
     
-    <!-- This link pulls in the Icons (Font Awesome) -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            /* Dark "Abyss" Background */
+            background-color: #050510; 
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            margin: 0;
         }
 
-        .profile-header {
+        .container {
             text-align: center;
-            margin-bottom: 40px;
+            max-width: 900px;
+            padding: 20px;
         }
 
-        .profile-header h1 {
-            color: #333;
+        /* Glowing Title */
+        h1 {
+            font-size: 3rem;
             margin-bottom: 10px;
+            /* Gradient Text */
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Subtle text glow */
+            text-shadow: 0px 0px 20px rgba(0, 114, 255, 0.3);
         }
 
-        .profile-header p {
-            color: #666;
-            font-size: 1.1rem;
+        p {
+            color: #a0a0a0;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
         }
 
-        /* Container for the icons */
+        /* Grid Layout */
         .icon-grid {
             display: flex;
-            flex-wrap: wrap; /* Allows icons to drop to next line on mobile */
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 25px;
             justify-content: center;
-            max-width: 800px;
         }
 
-        /* The individual link card */
+        /* The Icon Cards */
         .icon-card {
-            background: white;
-            width: 140px; /* Mid-size width */
-            height: 140px; /* Mid-size height */
+            width: 150px;
+            height: 150px;
+            background: #10101a; /* Slightly lighter than body */
+            border: 1px solid #1f1f3d;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-decoration: none; /* Removes underline */
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: #333;
+            text-decoration: none;
+            color: #00c6ff; /* Default Icon Color */
+            transition: all 0.3s ease-in-out;
+            position: relative;
         }
 
-        /* Hover Effect */
-        .icon-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            background-color: #0070f3; /* Vercel Blue on hover */
-            color: white;
-        }
-
-        /* Icon Styling */
         .icon-card i {
-            font-size: 3rem; /* Size of the icon */
-            margin-bottom: 10px;
+            font-size: 3.5rem; /* Mid-Size Icons */
+            margin-bottom: 15px;
         }
 
         .icon-card span {
-            font-weight: 600;
             font-size: 1rem;
+            color: #ffffff;
+            font-weight: 500;
         }
+
+        /* The "Blue Flame" Hover Effect */
+        .icon-card:hover {
+            transform: translateY(-8px);
+            background: #000000;
+            border-color: #0072ff;
+            /* This creates the glowing blue effect */
+            box-shadow: 0 0 25px rgba(0, 114, 255, 0.6), 
+                        0 0 50px rgba(0, 114, 255, 0.2); 
+        }
+
+        .icon-card:hover i {
+            color: #ffffff; /* Icon turns white on hover */
+            text-shadow: 0 0 10px #00c6ff;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="profile-header">
-        <h1>Connect With Me</h1>
-        <p>Check out my social media and projects below</p>
-    </div>
+    <div class="container">
+        <h1>Flames.Blue</h1>
+        <p>Welcome to my portal</p>
 
-    <div class="icon-grid">
-        
-        <!-- Link 1: GitHub -->
-        <a href="https://github.com/yourusername" target="_blank" class="icon-card">
-            <i class="fa-brands fa-github"></i>
-            <span>GitHub</span>
-        </a>
+        <div class="icon-grid">
+            
+            <!-- Link 1 -->
+            <a href="https://discord.com" target="_blank" class="icon-card">
+                <i class="fa-brands fa-discord"></i>
+                <span>Discord</span>
+            </a>
 
-        <!-- Link 2: LinkedIn -->
-        <a href="https://linkedin.com/in/yourusername" target="_blank" class="icon-card">
-            <i class="fa-brands fa-linkedin"></i>
-            <span>LinkedIn</span>
-        </a>
+            <!-- Link 2 -->
+            <a href="https://twitter.com" target="_blank" class="icon-card">
+                <i class="fa-brands fa-x-twitter"></i>
+                <span>Twitter</span>
+            </a>
 
-        <!-- Link 3: Twitter / X -->
-        <a href="https://twitter.com/yourusername" target="_blank" class="icon-card">
-            <i class="fa-brands fa-x-twitter"></i>
-            <span>Twitter</span>
-        </a>
+            <!-- Link 3 -->
+            <a href="https://github.com" target="_blank" class="icon-card">
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub</span>
+            </a>
 
-        <!-- Link 4: Instagram -->
-        <a href="https://instagram.com/yourusername" target="_blank" class="icon-card">
-            <i class="fa-brands fa-instagram"></i>
-            <span>Instagram</span>
-        </a>
+            <!-- Link 4 -->
+            <a href="https://instagram.com" target="_blank" class="icon-card">
+                <i class="fa-brands fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
 
-        <!-- Link 5: YouTube -->
-        <a href="https://youtube.com" target="_blank" class="icon-card">
-            <i class="fa-brands fa-youtube"></i>
-            <span>YouTube</span>
-        </a>
+            <!-- Link 5 -->
+            <a href="https://steamcommunity.com" target="_blank" class="icon-card">
+                <i class="fa-brands fa-steam"></i>
+                <span>Steam</span>
+            </a>
 
-        <!-- Link 6: Email -->
-        <a href="mailto:youremail@example.com" class="icon-card">
-            <i class="fa-solid fa-envelope"></i>
-            <span>Email Me</span>
-        </a>
+            <!-- Link 6 -->
+            <a href="mailto:contact@flames.blue" class="icon-card">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
 
+        </div>
     </div>
 
 </body>
